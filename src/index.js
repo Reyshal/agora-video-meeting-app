@@ -5,18 +5,26 @@ import App from "./App";
 import "./index.css";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import JoinRoom from "./pages/JoinRoom";
 
 const rootElement = document.getElementById("root");
 const root = ReactDOM.createRoot(rootElement);
 
 const client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8" });
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <JoinRoom />,
+  },
+]);
 
 root.render(
-  <Provider store={store}>
-    <StrictMode>
+  <StrictMode>
+    <Provider store={store}>
       <AgoraRTCProvider client={client}>
-        <App />
+        <RouterProvider router={router} />
       </AgoraRTCProvider>
-    </StrictMode>
-  </Provider>
+    </Provider>
+  </StrictMode>
 );
