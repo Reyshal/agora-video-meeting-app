@@ -6,6 +6,11 @@ const JoinRoom = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    setRoomName(roomName);
+    setUsername(username);
+
+    window.location.href = `/meet`;
   };
 
   return (
@@ -27,6 +32,7 @@ const JoinRoom = () => {
                 placeholder="Room Name"
                 value={roomName}
                 onChange={(e) => setRoomName(e.target.value)}
+                required
               />
             </div>
             <div className="mb-4">
@@ -40,6 +46,7 @@ const JoinRoom = () => {
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                required
               />
             </div>
             <div className="flex items-center justify-between">
