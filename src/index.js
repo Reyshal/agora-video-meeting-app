@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import JoinRoom from "./pages/JoinRoom";
+import Meet from "./pages/Meet";
 
 const rootElement = document.getElementById("root");
 const root = ReactDOM.createRoot(rootElement);
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <JoinRoom />,
+  },
+  {
+    path: "/meet",
+    element: <Meet />,
   },
 ]);
 
