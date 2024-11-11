@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setChannel, setUsername } from "../store";
 
 const JoinRoom = () => {
-  const [roomName, setRoomName] = React.useState("");
-  const [username, setUsername] = React.useState("");
+  const dispatch = useDispatch();
+  const { channel, username } = useSelector((state) => {
+    return {
+      channel: state.room.channel,
+      username: state.room.username,
+    };
+  });
+
+  const handleChannelChange = (event) => {
+    dispatch(setChannel(event.target.value));
+  };
+
+  const handleUsernameChange = (event) => {
+    dispatch(setUsername(event.target.value));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    setRoomName(roomName);
-    setUsername(username);
 
     window.location.href = `/meet`;
   };
@@ -23,15 +35,15 @@ const JoinRoom = () => {
           <form className="mt-4 mx-5" onSubmit={handleSubmit}>
             <div className="mb-2">
               <label className="block text-gray-700 text-sm font-bold mb-2">
-                Room Name
+                Channel Name
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="username"
                 type="text"
-                placeholder="Room Name"
-                value={roomName}
-                onChange={(e) => setRoomName(e.target.value)}
+                placeholder="Channel Name"
+                value={channel}
+                onChange={handleChannelChange}
                 required
               />
             </div>
@@ -45,7 +57,7 @@ const JoinRoom = () => {
                 type="text"
                 placeholder="Username"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={handleUsernameChange}
                 required
               />
             </div>

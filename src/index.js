@@ -1,13 +1,13 @@
 import React, { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import AgoraRTC, { AgoraRTCProvider } from "agora-rtc-react";
-import App from "./App";
-import "./index.css";
 import { Provider } from "react-redux";
-import { store } from "./store";
+import { store, persistor } from "./store";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import JoinRoom from "./pages/JoinRoom";
 import Meet from "./pages/Meet";
+import "./index.css";
+import { PersistGate } from "redux-persist/integration/react";
 
 const rootElement = document.getElementById("root");
 const root = ReactDOM.createRoot(rootElement);
@@ -27,9 +27,11 @@ const router = createBrowserRouter([
 root.render(
   <StrictMode>
     <Provider store={store}>
-      <AgoraRTCProvider client={client}>
-        <RouterProvider router={router} />
-      </AgoraRTCProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <AgoraRTCProvider client={client}>
+          <RouterProvider router={router} />
+        </AgoraRTCProvider>
+      </PersistGate>
     </Provider>
   </StrictMode>
 );
