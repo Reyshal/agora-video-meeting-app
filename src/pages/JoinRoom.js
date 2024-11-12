@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setChannel, setUsername } from "../store";
 
@@ -10,6 +10,11 @@ const JoinRoom = () => {
       username: state.room.username,
     };
   });
+
+  useEffect(() => {
+    dispatch(setUsername(""));
+    dispatch(setChannel(""));
+  }, [dispatch]);
 
   const handleChannelChange = (event) => {
     dispatch(setChannel(event.target.value));
