@@ -25,8 +25,13 @@ const Meet = () => {
     }
   }, [channel, navigate, username]);
 
+  // TODO: find a way to input username
   useJoin(
-    { appid: process.env.REACT_APP_AGORA_APP_ID, channel, token: null },
+    {
+      appid: process.env.REACT_APP_AGORA_APP_ID,
+      channel,
+      token: null,
+    },
     true
   );
 
@@ -58,6 +63,7 @@ const Meet = () => {
             {remoteUsers.map((user) => (
               <div className="user" key={user.uid}>
                 <RemoteUser user={user}>
+                  {/* TODO: add username not uid */}
                   <samp className="user-name">{user.uid}</samp>
                 </RemoteUser>
               </div>
