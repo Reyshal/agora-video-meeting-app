@@ -1,33 +1,23 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setChannel, setUsername } from "../store";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const JoinRoom = () => {
-  const dispatch = useDispatch();
-  const { channel, username } = useSelector((state) => {
-    return {
-      channel: state.room.channel,
-      username: state.room.username,
-    };
-  });
-
-  useEffect(() => {
-    dispatch(setUsername(""));
-    dispatch(setChannel(""));
-  }, [dispatch]);
+  const [username, setUsername] = React.useState("");
+  const [channel, setChannel] = React.useState("");
+  const navigate = useNavigate();
 
   const handleChannelChange = (event) => {
-    dispatch(setChannel(event.target.value));
+    setChannel(event.target.value);
   };
 
   const handleUsernameChange = (event) => {
-    dispatch(setUsername(event.target.value));
+    setUsername(event.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    window.location.href = `/meet`;
+    navigate(`/meet?channel=${channel}&username=${username}`);
   };
 
   return (
