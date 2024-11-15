@@ -24,3 +24,6 @@ yarn-error.log*
 
 # env
 .env
+
+# file dump
+/src/pages/MeetingRoom.js
