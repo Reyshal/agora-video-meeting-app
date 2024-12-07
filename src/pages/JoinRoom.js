@@ -6,14 +6,6 @@ const JoinRoom = () => {
   const [channel, setChannel] = React.useState("");
   const navigate = useNavigate();
 
-  const handleChannelChange = (event) => {
-    setChannel(event.target.value);
-  };
-
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -21,51 +13,54 @@ const JoinRoom = () => {
   };
 
   return (
-    <div className="bg-slate-50">
-      <div className="container mx-auto flex items-center h-screen">
-        <div className="shadow-lg w-2/6 py-4 mx-auto bg-white rounded-lg">
-          <h1 className="text-2xl font-bold text-gray-800 text-center border-b border-gray-200 pb-2">
-            Join Room
-          </h1>
-          <form className="mt-4 mx-5" onSubmit={handleSubmit}>
-            <div className="mb-2">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Channel Name
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="username"
-                type="text"
-                placeholder="Channel Name"
-                value={channel}
-                onChange={handleChannelChange}
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2">
-                Username
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="username"
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={handleUsernameChange}
-                required
-              />
-            </div>
-            <div className="flex items-center justify-between">
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded focus:outline-none focus:shadow-outline"
-                type="submit"
-              >
-                Join
-              </button>
-            </div>
-          </form>
-        </div>
+    <div className="flex items-center justify-center h-[90vh]">
+      <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+        <form className="space-y-6" action="#" onSubmit={handleSubmit}>
+          <h5 className="text-xl font-medium text-gray-900 dark:text-white">
+            Join a room
+          </h5>
+          <div>
+            <label
+              htmlFor="username"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Your username
+            </label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              placeholder="John Doe"
+              onChange={(event) => setUsername(event.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="room"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Your room name
+            </label>
+            <input
+              type="text"
+              name="room"
+              id="room"
+              placeholder="Daily Standup"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+              onChange={(event) => setChannel(event.target.value)}
+              required
+            />
+          </div>
+          
+          <button
+            type="submit"
+            className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Join to your room
+          </button>
+        </form>
       </div>
     </div>
   );
