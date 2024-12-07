@@ -25,12 +25,12 @@ const Meet = () => {
     }
   }, [channel, navigate, username]);
 
-  // TODO: find a way to input username
   useJoin(
     {
       appid: process.env.REACT_APP_AGORA_APP_ID,
       channel,
       token: null,
+      uid: `${username}_${Date.now()}`,
     },
     true
   );
@@ -56,6 +56,7 @@ const Meet = () => {
                 cameraOn={cameraOn}
                 micOn={micOn}
                 videoTrack={localCameraTrack}
+                playAudio={false}
               >
                 <samp className="user-name">You</samp>
               </LocalUser>
@@ -63,15 +64,14 @@ const Meet = () => {
             {remoteUsers.map((user) => (
               <div className="user" key={user.uid}>
                 <RemoteUser user={user}>
-                  {/* TODO: add username not uid */}
-                  <samp className="user-name">{user.uid}</samp>
+                  <samp className="user-name">{user.uid.split("_")[0]}</samp>
                 </RemoteUser>
               </div>
             ))}
           </div>
         ) : (
-          <div className="h-screen flex justify-center items-center">
-            <h1 className="text-2xl font-bold text-gray-800 text-center border-b border-gray-200 pb-2">
+          <div className="flex items-center justify-center h-screen">
+            <h1 className="pb-2 text-2xl font-bold text-center text-gray-800 border-b border-gray-200">
               Loading...
             </h1>
           </div>
